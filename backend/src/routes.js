@@ -2,9 +2,13 @@ const express = require('express')
 
 const routes = express.Router();
 
-app.get('/', (req, res) => res.json({
-  event: 'Semana OmniStack 11.0',
-  student: 'Carlos Augusto',
-}));
+routes.post('/ongs', (req, res) => {
+  const data = req.body;
+
+  console.log(data)
+
+  return res.json();
+
+});
 
 module.exports = routes;
