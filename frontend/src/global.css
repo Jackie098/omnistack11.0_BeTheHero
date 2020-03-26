@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box; 
+  /* para o pedding não somar ao tamanho total 
+   * do elemento mas sobrepor o valor, assim não aumentando o valor 
+   * de largura e/ou altura que foram definidos previamente
+   */
+}
+
+body {
+  font: 400 14px Roboto, sans-serif;
+  background: #F0F0F5;
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button, textarea {
+  font: 400 18px Roboto, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}

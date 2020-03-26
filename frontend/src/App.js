@@ -1,22 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-import Header from './Header';
+import './global.css';
+/**
+ * Não há necessidade de indicar o 'index.js', pois por não indicarmos
+ * nada, ele sempre procura pelo arquivo padrão (index.js)
+ */
+import Logon from './pages/Logon';
 
 function App() {  
-  const [counter, setCounter] = useState(0);
-
-  function increment() {
-    setCounter(counter + 1);
-
-    console.log(counter);
-  }
-
-    return (
-      <div>
-        <Header>Count: {counter}</Header>
-        <button onClick={increment}>Increment</button>
-      </div>
-    );
+  return (
+    <Logon/>
+  );
 }
 
 export default App;
