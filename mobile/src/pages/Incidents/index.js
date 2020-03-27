@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+
+import api from '../../services/api';
 
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
 export default function Incidents () {
+  const [incidents, setIncidents] = useState([]);
   const navigation = useNavigation();
 
   function navigateToDetail() {
     navigation.navigate('Detail');
   }
+
+  async function loadIncidents() {
+    const response = await api.get('incidents');
+
+    setIncidents(response.data);
+  }
+
+  useEffect(() => {
+    loadIncidents();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -29,20 +42,20 @@ export default function Incidents () {
       </Text>
 
       <FlatList   // 'Component' que subistui uma 'View' para tornar uma lista "scrollable"
-        data={[1, 2, 3]}  //Quantidade de dados que serão manipulados
+        data={incidents}  //Quantidade de dados que serão manipulados
         style={styles.incidentList} 
-        keyExtractor={incident => String(incident)} //Identificador para cada item
+        keyExtractor={incident => String(incident.id)} //Identificador para cada item
         showsVerticalScrollIndicator={false} //Indicador de scroll setado como falso
-        renderItem={() => (
+        renderItem={({ item: incident}) => (
           <View style={styles.incident}>
             <Text style={styles.incidentProperty}>ONG:</Text>
-            <Text style={styles.incidentValue}>APAD</Text>
+            <Text style={styles.incidentValue}>{incident.name}</Text>
 
             <Text style={styles.incidentProperty}>CASO:</Text>
-            <Text style={styles.incidentValue}>Cadelinha atropelada</Text>
+            <Text style={styles.incidentValue}>{incident.title}</Text>
 
             <Text style={styles.incidentProperty}>VALOR:</Text>
-            <Text style={styles.incidentValue}>R$: 120,00</Text>
+        <Text style={styles.incidentValue}>{incident.value}</Text>
             
             <TouchableOpacity   // Efeito padrão -> diminuir a opacidade de todos componentes dentro dele
               style={styles.detailsButton} 
