@@ -60,7 +60,7 @@ export default function Incidents () {
         Escolha um dos casos abaixo e salve o dia.
       </Text>
 
-      <FlatList   // 'Component' que subistui uma 'View' para tornar uma lista "scrollable"
+      <FlatList   // 'Component' que substui uma 'View' para tornar uma lista "scrollable"
         data={incidents}  //Quantidade de dados que serão manipulados
         style={styles.incidentList} 
         keyExtractor={incident => String(incident.id)} //Identificador para cada item
